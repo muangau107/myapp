@@ -33,20 +33,20 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   const ListTile(
                     title: Text(
-                      "Register New Account",
+                      "Đăng ký tài khoản mới",
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
 
                   // Username Field
-                  buildInputField("Username", username, Icons.person),
+                  buildInputField("Tài khoản", username, Icons.person),
 
                   // Password Field
-                  buildPasswordField("Password", password),
+                  buildPasswordField("Mật khẩu", password),
 
                   // Confirm Password Field
-                  buildPasswordField("Confirm Password", confirmPassword),
+                  buildPasswordField("Xác nhận mật khẩu", confirmPassword),
 
                   const SizedBox(height: 10),
 
@@ -59,34 +59,33 @@ class _SignUpState extends State<SignUp> {
                       color: Colors.deepPurple,
                     ),
                     child: TextButton(
-onPressed: () async {
-  if (formKey.currentState!.validate()) {
-    final db = DatabaseHelper();
-    try {
-      await db.signup(Users(
-          usrName: username.text,
-          usrPassword: password.text));
-      
-      // Kiểm tra widget có còn tồn tại không
-      if (!context.mounted) return;
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          final db = DatabaseHelper();
+                          try {
+                            await db.signup(Users(
+                                usrName: username.text,
+                                usrPassword: password.text));
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const LoginScreen()),
-      );
-    } catch (e) {
-      if (!context.mounted) return;
+                            // Kiểm tra widget có còn tồn tại không
+                            if (!context.mounted) return;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: $e")),
-      );
-    }
-  }
-},
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
+                          } catch (e) {
+                            if (!context.mounted) return;
 
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Error: $e")),
+                            );
+                          }
+                        }
+                      },
                       child: const Text(
-                        "SIGN UP",
+                        "ĐĂNG KÝ",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -96,7 +95,7 @@ onPressed: () async {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already have an account?"),
+                      const Text("Đã có tài khoản?"),
                       TextButton(
                         onPressed: () {
                           Navigator.push(
@@ -105,7 +104,7 @@ onPressed: () async {
                                 builder: (context) => const LoginScreen()),
                           );
                         },
-                        child: const Text("Login"),
+                        child: const Text("Đăng nhập"),
                       )
                     ],
                   ),
@@ -132,7 +131,7 @@ onPressed: () async {
         controller: controller,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "$hint is required";
+            return "$hint là bắt buộc";
           }
           return null;
         },
@@ -158,7 +157,7 @@ onPressed: () async {
         controller: controller,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "$hint is required";
+            return "$hint là bắt buộc";
           }
           if (hint == "Confirm Password" && password.text != value) {
             return "Passwords don't match";

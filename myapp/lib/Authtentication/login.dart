@@ -76,14 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: username,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "username is required";
+                          return "Vui lòng nhập tài khoản";
                         }
                         return null;
                       },
                       decoration: const InputDecoration(
                         icon: Icon(Icons.person),
                         border: InputBorder.none,
-                        hintText: "Username",
+                        hintText: "Tài khoản",
                       ),
                     ),
                   ),
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: password,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "password is required";
+                          return "Vui lòng nhập mật khẩu";
                         }
                         return null;
                       },
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                           icon: const Icon(Icons.lock),
                           border: InputBorder.none,
-                          hintText: "Password",
+                          hintText: "Mật khẩu",
                           suffixIcon: IconButton(
                               onPressed: () {
                                 //In here we will create a click to show and hide the password a toggle button
@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         child: const Text(
-                          "LOGIN",
+                          "ĐĂNG NHẬP",
                           style: TextStyle(color: Colors.white),
                         )),
                   ),
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an account?"),
+                      const Text("Không có tài khoản?"),
                       TextButton(
                           onPressed: () {
                             //Navigate to sign up
@@ -160,14 +160,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 MaterialPageRoute(
                                     builder: (context) => const SignUp()));
                           },
-                          child: const Text("SIGN UP"))
+                          child: const Text("Đăng ký"))
                     ],
                   ),
 
                   // We will disable this message in default, when user and pass is incorrect we will trigger this message to user
                   isLoginTrue
                       ? const Text(
-                          "Username or passowrd is incorrect",
+                          "Tên người dùng hoặc mật khẩu không chính xác",
                           style: TextStyle(color: Colors.red),
                         )
                       : const SizedBox(),
